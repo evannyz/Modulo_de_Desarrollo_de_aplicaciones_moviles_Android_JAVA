@@ -1,0 +1,14 @@
+4Ta Clase de desarrollo de apps Android, Cuarta app en Android Studio, se realizan operaciones basicas con check boxes 
+y switches
+
+
+Documentación: 
+
+Cómo cambiar el color de fondo de layout en Android Studio(Repaso)
+https://androidstudiofaqs.com/tutoriales/cambiar-color-de-fondo-de-layout-en-android-studio
+
+Tutorial de botones en android(Repaso)
+https://www.develou.com/controles-tutorial-botones-android/
+
+que es un Intent
+https://developer.android.com/guide/components/intents-filters?hl=es-419

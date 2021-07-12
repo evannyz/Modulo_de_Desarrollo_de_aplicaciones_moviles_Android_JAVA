@@ -1,0 +1,67 @@
+Evidencia “DÍA 1 SEMANA 11” del 05/07:
+Crear una interfaz con dos botones bonitos que muestren cada uno un mensaje Toast.
+
+1Ra Clase de desarrollo de apps Android, se adjunta los scripts y screenshots de la actividad desarrollada
+
+String.XML--------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+<resources>
+    <string name="app_name">PrimeraApp</string>
+    <string name="button">Soy un boton</string>
+    <string name="button2">Soy otro boton</string>
+    <string name="button3">Soy otro otro boton :D </string>
+
+
+
+</resources>
+
+Colors.xml--------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+
+</resources>
+
+MainActivity.java-------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+package com.example.primeraapp;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
+
+    public void Saludar(View v){
+        Toast.makeText(this, "Hola soy un boton",Toast.LENGTH_LONG).show();
+    }
+
+    public void SaludarDos(View v){
+        Toast.makeText(this,"Hola soy otro boton",Toast.LENGTH_LONG).show();
+
+    }
+
+    public void SaludarTres(View v){
+        Toast.makeText(this,"Chupaya",Toast.LENGTH_LONG).show();
+    }
+
+}

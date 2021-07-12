@@ -1,0 +1,10 @@
+3Ra Clase de desarrollo de apps Android, se comprueba que la app del día anterior no pueda dividir por cero, se crea otra app y se asigna un Image button  con un mensaje
+en esta misma app se realizan las mismas oepraciones basicas matematicas pero se utilizan radio buttons.
+
+Documentación: 
+
+Cómo cambiar el color de fondo de layout en Android Studio
+https://androidstudiofaqs.com/tutoriales/cambiar-color-de-fondo-de-layout-en-android-studio
+
+Tutorial de botones en android
+https://www.develou.com/controles-tutorial-botones-android/

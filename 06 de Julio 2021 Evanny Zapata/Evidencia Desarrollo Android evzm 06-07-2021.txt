@@ -1,0 +1,252 @@
+Evidencia “DÍA 2 SEMANA 11” del 06/07:
+Crear una interfaz de usuario que reciba 2 números por teclado, 
+con botones que realicen distintas operaciones matemáticas entre los dos números, 
+y que muestre el resultado.
+
+
+2Da Clase de desarrollo de apps Android, se adjunta los scripts y screenshots de la actividad desarrollada
+
+
+
+
+String.XML--------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+<resources>
+    <string name="app_name">SegundaApp</string>
+    <string name="botonsumar">Sumar</string>
+    <string name="editnumero1">"Ingrese primer valor"</string>
+    <string name="editnumero2">"Ingrese segundo valor"</string>
+    <string name="tvresultado">"El resultado de su operación :"</string>
+    <string name="botonresta">Restar</string>
+    <string name="botonmulti">*</string>
+    <string name="botondivi">/</string>
+    <string name="tvresultado2">El resultado de su multiplicación es:</string>
+
+</resources>
+
+
+
+
+
+activity_main.xml--------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#CBF6CD"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/botonsumar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="27dp"
+        android:hint="@string/botonsumar"
+        android:onClick="Sumar"
+        android:textColorHint="@color/black"
+        app:backgroundTint="@android:color/transparent"
+        app:cornerRadius="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.309"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editnumero2"
+        app:layout_constraintVertical_bias="0.053"
+        app:strokeWidth="2dp" />
+
+    <TextView
+        android:id="@+id/tvresultado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="159dp"
+        android:layout_marginBottom="252dp"
+        android:hint="@string/tvresultado"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editnumero2"
+        app:layout_constraintVertical_bias="0.477" />
+
+    <EditText
+        android:id="@+id/editnumero1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/editnumero1"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.053" />
+
+    <EditText
+        android:id="@+id/editnumero2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:ems="10"
+        android:hint="@string/editnumero2"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editnumero1"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/botonresta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginTop="27dp"
+        android:hint="@string/botonresta"
+        android:onClick="Restar"
+        android:textColorHint="@color/black"
+        app:backgroundTint="@android:color/transparent"
+        app:cornerRadius="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/botonsumar"
+        app:layout_constraintTop_toBottomOf="@+id/editnumero2"
+        app:layout_constraintVertical_bias="0.051"
+        app:strokeWidth="2dp" />
+
+    <Button
+        android:id="@+id/botonmulti"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="92dp"
+        android:layout_marginLeft="92dp"
+        android:layout_marginTop="28dp"
+        android:hint="@string/botonmulti"
+        android:onClick="Multiplicar"
+        android:textColor="@color/black"
+        app:backgroundTint="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/botonsumar"
+        app:layout_constraintVertical_bias="0.018"
+        app:strokeWidth="2dp" />
+
+    <Button
+        android:id="@+id/botondivi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginTop="28dp"
+        android:hint="@string/botondivi"
+        android:onClick="Dividir"
+        android:textColor="@color/black"
+        app:backgroundTint="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.021"
+        app:layout_constraintStart_toEndOf="@+id/botonmulti"
+        app:layout_constraintTop_toBottomOf="@+id/botonresta"
+        app:layout_constraintVertical_bias="0.02"
+        app:strokeWidth="2dp" />
+
+    <EditText
+        android:id="@+id/tvresultado2"
+        android:layout_width="310dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="36dp"
+        android:ems="10"
+        android:hint="@string/tvresultado2"
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvresultado"
+        app:layout_constraintVertical_bias="0.008" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+MainActivity.java-------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+package com.example.segundaapp;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity {
+
+
+    private EditText ednum1,ednum2;
+    private TextView tvresult,tvresult2;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        ednum1=findViewById(R.id.editnumero1);
+        ednum2=findViewById(R.id.editnumero2);
+        tvresult=findViewById(R.id.tvresultado);
+        tvresult2=findViewById(R.id.tvresultado2);
+    }
+
+
+
+    public void Sumar (View v){
+        int valor1 = Integer.parseInt(ednum1.getText().toString());
+        int valor2 = Integer.parseInt(ednum2.getText().toString());
+        int suma = valor1 + valor2;
+        tvresult.setText("El resultado de su suma es "+suma);
+
+    }
+
+    public void Restar (View v){
+        int valor1 = Integer.parseInt(ednum1.getText().toString());
+        int valor2 = Integer.parseInt(ednum2.getText().toString());
+        int resta = valor1-valor2;
+        tvresult.setText("El resultado de su resta es "+resta);
+
+    }
+
+    public void Multiplicar(View U){
+        int valor1 = Integer.parseInt(ednum1.getText().toString());
+        int valor2 = Integer.parseInt(ednum2.getText().toString());
+        int multiplicar = valor1*valor2;
+        tvresult.setText("El resultado de su multiplicación es "+ multiplicar);
+
+    }
+
+    public void Dividir(View U){
+        double valor1 = Double.parseDouble(ednum1.getText().toString());
+        double valor2 = Double.parseDouble(ednum2.getText().toString());
+
+        double dividir = valor1 / valor2;
+        tvresult2.setText("El resultado dividido es: " + dividir);
+
+
+    }
+
+
+
+
+}

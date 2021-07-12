@@ -1,0 +1,278 @@
+Evidencia “DÍA 6 SEMANA 11” del 10/07:
+Crear una aplicación que haga lo mismo que las anteriores pero que funcione con Spinner.
+
+6Xta Clase de desarrollo de apps Android, se adjunta los scripts y screenshots de la actividad desarrollada
+
+
+======================================================================================================================================================
+App con Spinner y layouts de Spinner alterados, se añade una segunda actividad vacia de ejercicio para generar un nuevo intent
+======================================================================================================================================================
+
+
+String.XML--------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+<resources>
+    <string name="app_name">QuintaApp</string>
+    <string name="btoperar">Operar</string>
+    <string name="etnuno">Ingrese su primer valor</string>
+    <string name="etndos">Ingrese su segundo valor</string>
+    <string name="tvresult">Su resultado es: </string>
+    <string name="tvresult2">Ingrese su operación: </string>
+    <string name="btsiguiente">Siguiente</string>
+
+</resources>
+
+
+activity_main.xml--------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/invierno"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/tvresult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/tvresult"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.706" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="335dp"
+        android:layout_height="135dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.539"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvresult2"
+        app:layout_constraintVertical_bias="0.066">
+
+        <EditText
+            android:id="@+id/etnuno"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/etnuno"
+            android:inputType="numberDecimal"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white" />
+
+        <EditText
+            android:id="@+id/etndos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/etndos"
+            android:inputType="numberDecimal"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btoperar"
+        android:layout_width="99dp"
+        android:layout_height="73dp"
+        android:background="@android:drawable/ic_media_play"
+        android:hint="@string/btoperar"
+        android:onClick="operar"
+        android:textColorHint="@color/white"
+        app:backgroundTint="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.577" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="341dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.411" />
+
+    <TextView
+        android:id="@+id/tvresult2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/tvresult2"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.08" />
+
+    <Button
+        android:id="@+id/btsiguiente"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/btsiguiente"
+        android:onClick="Siguiente"
+        android:textColorHint="@color/white"
+        app:backgroundTint="@android:color/transparent"
+        app:cornerRadius="15sp"
+        app:icon="@android:drawable/ic_media_ff"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.857"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.913"
+        app:strokeColor="@color/white"
+        app:strokeWidth="2dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+MainActivity.java-------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+package com.example.quintaapp;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
+
+public class MainActivity extends AppCompatActivity {
+
+    private Spinner sp1;
+    private TextView tv1;
+    private EditText edn1, edn2;
+    private String[] option ={"Seleccione Operación","Sumar","Restar","Multiplicar","Dividir"};
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        tv1=findViewById(R.id.tvresult);
+        edn1=findViewById(R.id.etnuno);
+        edn2=findViewById(R.id.etndos);
+        sp1=findViewById(R.id.spinner);
+
+        ArrayAdapter <String> adapter = new ArrayAdapter<>(this,R.layout.spinner_item_calcular,option);
+        sp1.setAdapter(adapter);
+
+
+    }
+
+
+    public void operar(View v){
+
+        double valor = Double.parseDouble(edn1.getText().toString());
+        double valor2 =Double.parseDouble(edn2.getText().toString());
+
+        String operation = sp1.getSelectedItem().toString();
+
+        if (operation.equals("Sumar")){
+            double suma = valor+ valor2;
+            tv1.setText("El resultado de su suma es: "+suma);
+        }else if(operation.equals("Restar")){
+            double resta= valor-valor2;
+            tv1.setText("El resultado de su resta es: "+resta);
+        }else if(operation.equals("Multiplicar")){
+            double multi = valor*valor2;
+            tv1.setText("El resultado de su multiplicación es: "+multi);
+        }else if(operation.equals("Dividir")){
+            if(valor2==0){
+                tv1.setText("El divisor debe ser distinto a 0");
+            }else{
+                double divi = valor/valor2;
+                tv1.setText("El resultado de su división es: "+divi);
+            }
+
+        }else{
+            tv1.setText("Seleccione operación");
+        }
+
+
+    }
+
+    public void Siguiente (View v){
+        Intent sig = new Intent(this,SegundaActividad.class);
+        startActivity(sig);
+
+
+    }
+}
+
+
+spinner_item_calcular.xml(Layout de configuración del spinner)----------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:textSize="20sp"
+    android:padding="10sp"
+    android:textColor="@color/white"
+    android:background="@color/black"
+
+    xmlns:android="http://schemas.android.com/apk/res/android"/>
+
+
+activity_segunda_actividad.xml------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SegundaActividad">
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+SegundaActividad.java---------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+package com.example.quintaapp;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+
+public class SegundaActividad extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_segunda_actividad);
+    }
+}
+
+

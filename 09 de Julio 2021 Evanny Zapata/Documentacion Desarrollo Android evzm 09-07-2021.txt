@@ -1,0 +1,17 @@
+5Ta Clase de desarrollo de apps Android, A la app de ayer le agrego una segunda actividad para dividir el programa en dos y 
+dejar el ejercicio de check box en un actividad y el de switches en otra
+
+
+Documentación: 
+
+Cómo cambiar el color de fondo de layout en Android Studio(Repaso)
+https://androidstudiofaqs.com/tutoriales/cambiar-color-de-fondo-de-layout-en-android-studio
+
+Tutorial de botones en android(Repaso)
+https://www.develou.com/controles-tutorial-botones-android/
+
+Que es un Intent (Repaso)
+https://developer.android.com/guide/components/intents-filters?hl=es-419
+
+Como cambiar de actividad con un boton
+https://www.youtube.com/watch?v=VQcJRM6ZgHw&ab_channel=LaGeekipediaDeErnesto

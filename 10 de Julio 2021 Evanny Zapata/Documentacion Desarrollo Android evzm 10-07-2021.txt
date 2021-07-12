@@ -1,0 +1,14 @@
+6Xta Clase de desarrollo de apps Android, Se crea una nueva app con Spinner que hace lo mismo que las anteriores, se crea un nuevo layout y se modifican las opciones del Spinner
+
+
+Documentación: 
+
+Que es un Control Spinner
+https://danielme.com/2013/04/25/diseno-android-spinner/#:~:text=El%20widget%20Spinner%20de%20Android,la%20lista%20de%20opciones%20desplegables.
+
+Como modificar un Spinner
+https://www.youtube.com/watch?v=rCT7EDJ3em4&ab_channel=LaGeekipediaDeErnesto
+
+Que es un layout y sus opciones 
+https://www.develou.com/android-layouts-views/
+

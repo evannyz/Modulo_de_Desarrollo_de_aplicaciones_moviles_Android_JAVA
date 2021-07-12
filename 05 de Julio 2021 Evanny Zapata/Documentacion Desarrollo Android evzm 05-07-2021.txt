@@ -1,0 +1,14 @@
+1Ra Clase de desarrollo de apps Android, Se crea la primera interfaz en Android Studio para el desarrollo de aplicaciones móviles,
+ se crea una actividad dentro del menú y se añaden botones decorativos, a los mismos se le añaden acciones en este caso desplegar un mensaje tipo Toast
+
+
+
+Documentación: 
+
+Creación de un nuevo proyecto en android Studio
+https://www.youtube.com/watch?v=LOVHxVDx3Rc&ab_channel=LaGeekipediaDeErnesto
+
+Que es toast en android studio
+https://www.sgoliver.net/blog/notificaciones-en-android-i-toast/
+
+

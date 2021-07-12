@@ -1,0 +1,15 @@
+2Da Clase de desarrollo de apps Android, Se crea la segunda interfaz de usuario, en esta se añaden dos objetos de tipo text number para poder recibir
+números ingresados por el usuario, se cambia el id de los objetos se agregan 4 botones para indicar las operaciones basicas de suma, resta, multiplicación y división
+se añade un Text View para poder indicar el resultado de la operacion y un text number de tipo decimal para la división
+
+
+Documentación: 
+
+Creación de un nuevo proyecto en android Studio(Repaso)
+https://www.youtube.com/watch?v=LOVHxVDx3Rc&ab_channel=LaGeekipediaDeErnesto
+
+Herramienta constraint layout en android studio
+https://www.youtube.com/watch?v=A9nPKp9vtuo&list=PLyvsggKtwbLX06iMtXnRGX5lyjiiMaT2y&index=4&ab_channel=LaGeekipediaDeErnesto
+
+Como conectar un celular físico a android
+https://www.youtube.com/watch?v=ViT-LHZBZkQ&list=PLyvsggKtwbLX06iMtXnRGX5lyjiiMaT2y&index=6&ab_channel=LaGeekipediaDeErnesto

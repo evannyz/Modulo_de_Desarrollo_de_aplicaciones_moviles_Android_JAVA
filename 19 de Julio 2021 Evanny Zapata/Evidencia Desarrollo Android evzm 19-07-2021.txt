@@ -1,0 +1,441 @@
+Evidencia “DÍA 1 SEMANA 13” del 19/07:
+En la aplicación del ejercicio anterior del 15/07, 
+implementar los botones para modificar y eliminar un producto,
+según código ingresado.
+
+
+11Ra Clase de desarrollo de apps Android, se adjunta los scripts y screenshots de la actividad desarrollada, de las actividades secundarias solo se adjuntará el archivo .java
+
+
+String.XML--------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+<resources>
+    <string name="app_name">OctavaApp</string>
+    <string name="tvbienvenida">Bienvenido al sistema de registro de producto</string>
+    <string name="etcodigop">Ingrese codigo del producto</string>
+    <string name="etnombrep">Ingrese nombre del producto</string>
+    <string name="etpreciop">Ingrese el precio del producto</string>
+    <string name="btcrearp">Crear Producto</string>
+    <string name="btbuscarp">Buscar Producto</string>
+    <string name="btmodificarp">Modificar Producto</string>
+    <string name="bteliminarp">Eliminar Producto</string>
+
+</resources>
+
+
+activity_main.xml--------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/palmerasclaro"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="269dp"
+        android:layout_height="180dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.168">
+
+        <EditText
+            android:id="@+id/etcodigop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/etcodigop"
+            android:inputType="number"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
+
+        <EditText
+            android:id="@+id/etnombrep"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/etnombrep"
+            android:inputType="textPersonName"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
+
+        <EditText
+            android:id="@+id/etpreciop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/etpreciop"
+            android:inputType="number"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="269dp"
+        android:layout_height="220dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.555">
+
+        <Button
+            android:id="@+id/btcrearp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/btcrearp"
+            android:onClick="crearProducto"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            app:backgroundTint="@android:color/holo_blue_dark"
+            app:cornerRadius="15dp" />
+
+        <Button
+            android:id="@+id/btbuscarp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/btbuscarp"
+            android:onClick="buscarProducto"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            app:backgroundTint="@android:color/holo_blue_dark"
+            app:cornerRadius="15dp" />
+
+        <Button
+            android:id="@+id/btmodificarp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/btmodificarp"
+            android:onClick="modificarProducto"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            app:backgroundTint="@android:color/holo_blue_dark"
+            app:cornerRadius="15dp" />
+
+        <Button
+            android:id="@+id/bteliminarp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/bteliminarp"
+            android:onClick="eliminarProducto"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            app:backgroundTint="@android:color/holo_blue_dark"
+            app:cornerRadius="15dp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvbienvenida"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/tvbienvenida"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.072" />
+
+    <Spinner
+        android:id="@+id/spconsulta"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.762" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+MainActivity.java-------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------
+package com.example.octavaapp;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.ContentValues;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+
+public class MainActivity extends AppCompatActivity {
+
+    private EditText etcod, etnom,etpre;
+    private Spinner spcon;
+    ArrayList<String> listaProductos;
+    ArrayList<Producto> productosLista;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        etcod=findViewById(R.id.etcodigop);
+        etnom=findViewById(R.id.etnombrep);
+        etpre=findViewById(R.id.etpreciop);
+        spcon= findViewById(R.id.spconsulta);
+
+        consultarListaProductos();
+
+        ArrayAdapter<String> adptador = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,listaProductos);
+        spcon.setAdapter(adptador);
+
+
+    }
+
+
+    public void consultarListaProductos(){
+        Admindb admin = new Admindb(this,"Productos",null,1);
+        SQLiteDatabase base = admin.getWritableDatabase();
+
+        Producto p1=null;
+        productosLista = new ArrayList<Producto>();
+        Cursor fila = base.rawQuery("select * from producto ",null);
+
+        while (fila.moveToNext()){
+            p1= new Producto();
+            p1.setCodigo(fila.getInt(0));
+            p1.setNombre(fila.getString(1));
+            p1.setPrecio(fila.getInt(2));
+            productosLista.add(p1);
+
+        }
+
+        consultarProducto();
+
+
+    }
+
+    public void consultarProducto(){
+        listaProductos = new ArrayList<String>();
+        for (int i =0;i<productosLista.size();i++){
+            listaProductos.add(productosLista.get(i).getCodigo()+" - "+productosLista.get(i).getNombre()+" - "
+                    + productosLista.get(i).getPrecio());
+        }
+
+    }
+
+
+
+    public void crearProducto (View v){
+        Admindb admin = new Admindb(this, "Productos", null, 1);
+        SQLiteDatabase base = admin.getWritableDatabase();
+
+        String codigo = etcod.getText().toString();
+        String nombre = etnom.getText().toString();
+        String precio = etpre.getText().toString();
+
+        if(!codigo.isEmpty() && !nombre.isEmpty() && !precio.isEmpty()){
+
+            ContentValues crear = new ContentValues();
+            crear.put("codigo",codigo);
+            crear.put("nombre",nombre);
+            crear.put("precio", precio);
+
+
+            base.insert("producto",null, crear);
+            base.close();
+            etcod.setText("");
+            etnom.setText("");
+            etpre.setText("");
+            Toast.makeText(this,"Registro creado exitosamente",Toast.LENGTH_LONG).show();
+
+
+
+        }else{
+            Toast.makeText(this,"Debe completar todos los campos",Toast.LENGTH_LONG).show();
+
+        }
+    }
+
+    public void buscarProducto (View v){
+        Admindb admin = new Admindb(this,"Productos", null, 1);
+        SQLiteDatabase base = admin.getWritableDatabase();
+
+        String codigo = etcod.getText().toString();
+        /*String nombre = etnom.getText().toString();
+        String precio = etpre.getText().toString();*/
+
+        if(!codigo.isEmpty()){
+
+            Cursor fila = base.rawQuery("select nombre, precio from producto where codigo="+codigo,null);
+            if(fila.moveToFirst()){
+                etnom.setText(fila.getString(0));
+                etpre.setText(fila.getString(1));
+                base.close();
+            }else{
+                Toast.makeText(this,"El codigo del producto no se encuentra en la base de datos",Toast.LENGTH_LONG).show();
+            }
+
+
+        }else{
+            Toast.makeText(this,"Debe introducir el codigo del producto",Toast.LENGTH_LONG).show();
+
+        }
+
+
+    }
+
+    public void modificarProducto (View v){
+        Admindb admin = new Admindb(this, "Productos",null,1);
+        SQLiteDatabase base = admin.getWritableDatabase();
+
+        String codigo = etcod.getText().toString();
+        String nombre = etnom.getText().toString();
+        String precio = etpre.getText().toString();
+
+        if(!codigo.isEmpty() && !nombre.isEmpty() && !precio.isEmpty()){
+
+            ContentValues registro = new ContentValues();
+            registro.put("codigo",codigo);
+            registro.put("nombre",nombre);
+            registro.put("precio",precio);
+
+            base.update("producto", registro, "codigo="+codigo, null);
+            base.close();
+            etcod.setText("");
+            etnom.setText("");
+            etpre.setText("");
+            Toast.makeText(this, "Modificación de producto exitosa", Toast.LENGTH_LONG).show();
+
+
+        }else{
+            Toast.makeText(this,"Debe completar todos los campos",Toast.LENGTH_LONG).show();
+
+        }
+    }
+
+
+    public void eliminarProducto (View v){
+        Admindb admin = new Admindb(this,"Productos",null,1);
+        SQLiteDatabase base = admin.getWritableDatabase();
+
+        String codigo = etcod.getText().toString();
+
+        if(!codigo.isEmpty()){
+
+            int cantidad = base.delete("producto","codigo="+codigo,null);
+            base.close();
+
+            etcod.setText("");
+            etnom.setText("");
+            etpre.setText("");
+
+            if(cantidad ==1){
+                Toast.makeText(this, "Su articulo se borró correctamente",Toast.LENGTH_LONG).show();
+            }else{
+                Toast.makeText(this, "El articulo que desea eliminar no existe en la base de datos",Toast.LENGTH_LONG).show();
+            }
+
+
+
+        }else{
+            Toast.makeText(this,"Debes introducir el codigo del producto",Toast.LENGTH_LONG).show();
+        }
+
+    }
+
+}
+
+
+
+Admindb.java------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+package com.example.octavaapp;
+
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+
+import androidx.annotation.Nullable;
+
+public class Admindb extends SQLiteOpenHelper{
+
+    public Admindb(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
+        super(context, name, factory, version);
+    }
+
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+
+        db.execSQL("create table producto (codigo int primary key, nombre varchar, precio int)");
+
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+
+    }
+}
+
+
+
+Producto.java---------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+public class Producto {
+
+    private int codigo;
+    private String nombre;
+    private int precio;
+
+    public Producto(int codigo, String nombre, int precio) {
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.precio = precio;
+    }
+
+    public Producto() {
+    }
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public int getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(int precio) {
+        this.precio = precio;
+    }
+}
+
+

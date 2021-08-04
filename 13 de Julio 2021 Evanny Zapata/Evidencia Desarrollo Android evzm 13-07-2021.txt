@@ -1,0 +1,264 @@
+Evidencia “DÍA 2 SEMANA 12” del 13/07:
+1 - Avance del ejercicio anterior del 12/07.
+2 - Crear una aplicación que presente un formulario que el usuario rellenará y registrará a través de un botón, el cual abrirá una nueva Actividad que avise al usuario en caso de registro exitoso y muestre los datos registrados.
+
+
+8Va Clase de desarrollo de apps Android, se adjunta los scripts y screenshots de la actividad desarrollada, de las actividades secundarias solo se adjuntará el archivo .java
+
+
+String.XML--------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+<resources>
+    <string name="app_name">SeptimaApp</string>
+    <string name="tvbienvenida">Bienvenido al registro de usuario, por favor ingrese sus datos:</string>
+    <string name="etname">Ingrese sus nombres</string>
+    <string name="etsurname">Ingrese sus apellidos</string>
+    <string name="etrut">Ingrese su RUT</string>
+    <string name="etedad">Ingrese su edad</string>
+    <string name="etdate">Ingrese su fecha de nacimiento</string>
+    <string name="btenviar">Registrar Usuario</string>
+    <string name="etusuario">Ingrese su nombre de usuario</string>
+    <string name="etclave">Ingrese su clave</string>
+    <string name="tvresultado2">Ingrese sus datos</string>
+
+
+    <string name="tvregistro">Registro exitoso</string>
+
+
+</resources>
+
+
+MainActivity.java-------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+package com.example.septimaapp;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+
+public class MainActivity extends AppCompatActivity {
+
+    private EditText et1, et2, et3, et4, et5,et6,et7;
+    private TextView tv1;
+
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        et1=findViewById(R.id.etname);
+        et2=findViewById(R.id.etsurname);
+        et3=findViewById(R.id.etedad);
+        et4=findViewById(R.id.etrut);
+        et5=findViewById(R.id.etdate);
+        et6=findViewById(R.id.etusuario);
+        et7=findViewById(R.id.etclave);
+        tv1=findViewById(R.id.tvresultado2);
+    }
+
+
+    public void Registrar (View v){
+        if(et1.getText().toString().trim().isEmpty() || et2.getText().toString().trim().isEmpty() || et3.getText().toString().trim().isEmpty() || et4.getText().toString().trim().isEmpty() ||et5.getText().toString().trim().isEmpty() || et6.getText().toString().trim().isEmpty() || et7.getText().toString().trim().isEmpty()){
+            tv1.setText("Faltan valores por ingresar");
+
+
+
+        }else {
+
+            Intent regname = new Intent(this, SegundaActividad.class);
+            regname.putExtra("nombres", et1.getText().toString());
+            regname.putExtra("apellidos", et2.getText().toString());
+            regname.putExtra("edad", et3.getText().toString());
+            regname.putExtra("rut", et4.getText().toString());
+            regname.putExtra("nacimiento", et5.getText().toString());
+            regname.putExtra("usuario", et6.getText().toString());
+            regname.putExtra("clave", et7.getText().toString());
+            startActivity(regname);
+
+        }
+    }
+}
+
+activity_main.xml-------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/cielo"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/tvbienvenida"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.592"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.022" />
+
+    <LinearLayout
+        android:layout_width="316dp"
+        android:layout_height="500dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.357"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.454">
+
+        <TextView
+            android:id="@+id/tvresultado2"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center_horizontal"
+            android:hint="@string/tvresultado2"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/etname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/etname"
+            android:inputType="textPersonName"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
+
+        <EditText
+            android:id="@+id/etsurname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/etsurname"
+            android:inputType="textPersonName"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
+
+        <EditText
+            android:id="@+id/etedad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/etedad"
+            android:inputType="number"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
+
+        <EditText
+            android:id="@+id/etrut"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/etrut"
+            android:inputType="textPersonName"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
+
+        <EditText
+            android:id="@+id/etdate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/etdate"
+            android:inputType="date"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
+
+        <EditText
+            android:id="@+id/etusuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/etusuario"
+            android:inputType="textPersonName"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
+
+        <EditText
+            android:id="@+id/etclave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/etclave"
+            android:inputType="textPassword"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
+
+        <Button
+            android:id="@+id/btenviar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/btenviar"
+            android:onClick="Registrar"
+            android:textColorHint="@color/white" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+SegundaActividad.java---------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+package com.example.septimaapp;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.widget.TextView;
+
+public class SegundaActividad extends AppCompatActivity {
+
+    private TextView tv1,tv2,tv3,tv4,tv5,tv6,tv7;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_segunda_actividad);
+        tv1=findViewById(R.id.tvres1);
+        tv2=findViewById(R.id.tvres2);
+        tv3=findViewById(R.id.tvres3);
+        tv4=findViewById(R.id.tvres4);
+        tv5=findViewById(R.id.tvres5);
+        tv6=findViewById(R.id.tvres6);
+        tv7=findViewById(R.id.tvres7);
+
+        String nombre = getIntent().getStringExtra("nombres");
+        tv1.setText("Nombres: "+nombre);
+        String apellido = getIntent().getStringExtra("apellidos");
+        tv2.setText("Apellidos: "+apellido);
+        String edad = getIntent().getStringExtra("edad");
+        tv3.setText("Edad: "+edad);
+        String rut =getIntent().getStringExtra("rut");
+        tv4.setText("R.U.T.: "+rut);
+        String nacimiento =getIntent().getStringExtra("nacimiento");
+        tv5.setText("Fecha de nacimiento: "+nacimiento);
+        String usuario =getIntent().getStringExtra("usuario");
+        tv6.setText("Nombre de usuario: "+usuario);
+        String clave =getIntent().getStringExtra("clave");
+        tv7.setText("Clave: "+clave);
+
+
+    }
+}

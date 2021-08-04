@@ -1,0 +1,247 @@
+Evidencia “DÍA 3 SEMANA 12” del 14/07:
+Crear una aplicación con SQLite que reciba el código,
+ nombre y precio de un producto desde el teclado, y contenga cuatro botones para guardar el producto ingresado 
+(sólo si los tres campos contienen texto), buscar un producto, modificar un producto y eliminar un producto, respectivamente, 
+en la Base de Datos. Por hoy sólo implementar el botón para guardar.
+
+
+9Na Clase de desarrollo de apps Android, se adjunta los scripts y screenshots de la actividad desarrollada, de las actividades secundarias solo se adjuntará el archivo .java
+
+
+String.XML--------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+<resources>
+    <string name="app_name">OctavaApp</string>
+    <string name="tvbienvenida">Bienvenido al sistema de registro de producto</string>
+    <string name="etcodigop">Ingrese codigo del producto</string>
+    <string name="etnombrep">Ingrese nombre del producto</string>
+    <string name="etpreciop">Ingrese el precio del producto</string>
+    <string name="btcrearp">Crear Producto</string>
+    <string name="btbuscarp">Buscar Producto</string>
+    <string name="btmodificarp">Modificar Producto</string>
+    <string name="bteliminarp">Eliminar Producto</string>
+    
+</resources>
+
+MainActivity.java-------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+package com.example.octavaapp;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.ContentValues;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity {
+
+    private EditText etcod, etnom,etpre;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        etcod=findViewById(R.id.etcodigop);
+        etnom=findViewById(R.id.etnombrep);
+        etpre=findViewById(R.id.etpreciop);
+
+
+    }
+
+    public void crearProducto (View v){
+        Admindb admin = new Admindb(this, "Productos", null, 1);
+        SQLiteDatabase base = admin.getWritableDatabase();
+
+        String codigo = etcod.getText().toString();
+        String nombre = etnom.getText().toString();
+        String precio = etpre.getText().toString();
+
+        if(!codigo.isEmpty() && !nombre.isEmpty() && !precio.isEmpty()){
+
+            ContentValues crear = new ContentValues();
+            crear.put("codigo",codigo);
+            crear.put("nombre",nombre);
+            crear.put("precio", precio);
+
+
+            base.insert("producto",null, crear);
+            base.close();
+            etcod.setText("");
+            etnom.setText("");
+            etpre.setText("");
+            Toast.makeText(this,"Registro creado exitosamente",Toast.LENGTH_LONG).show();
+
+
+
+        }else{
+            Toast.makeText(this,"Debe completar todos los campos",Toast.LENGTH_LONG).show();
+
+        }
+    }
+}
+
+
+activity_main.xml-------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/palmerasclaro"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="269dp"
+        android:layout_height="180dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.314">
+
+        <EditText
+            android:id="@+id/etcodigop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/etcodigop"
+            android:inputType="number"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
+
+        <EditText
+            android:id="@+id/etnombrep"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/etnombrep"
+            android:inputType="textPersonName"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
+
+        <EditText
+            android:id="@+id/etpreciop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/etpreciop"
+            android:inputType="number"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="269dp"
+        android:layout_height="220dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.741">
+
+        <Button
+            android:id="@+id/btcrearp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/btcrearp"
+            android:onClick="crearProducto"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            app:backgroundTint="@android:color/holo_blue_dark"
+            app:cornerRadius="15dp" />
+
+        <Button
+            android:id="@+id/btbuscarp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/btbuscarp"
+            android:onClick="buscarProducto"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            app:backgroundTint="@android:color/holo_blue_dark"
+            app:cornerRadius="15dp" />
+
+        <Button
+            android:id="@+id/btmodificarp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/btmodificarp"
+            android:onClick="modificarProducto"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            app:backgroundTint="@android:color/holo_blue_dark"
+            app:cornerRadius="15dp" />
+
+        <Button
+            android:id="@+id/bteliminarp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/bteliminarp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            app:backgroundTint="@android:color/holo_blue_dark"
+            app:cornerRadius="15dp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvbienvenida"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/tvbienvenida"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.127" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+Admindb.java(Base de datos)---------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+ackage com.example.octavaapp;
+
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+
+import androidx.annotation.Nullable;
+
+public class Admindb extends SQLiteOpenHelper{
+
+    public Admindb(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
+        super(context, name, factory, version);
+    }
+
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+
+        db.execSQL("create table producto (codigo int primary key, nombre varchar, precio int)");
+
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+
+    }
+}

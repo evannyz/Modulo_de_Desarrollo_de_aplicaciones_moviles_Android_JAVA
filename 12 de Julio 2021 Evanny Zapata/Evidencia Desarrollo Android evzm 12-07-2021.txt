@@ -1,0 +1,611 @@
+Evidencia “DÍA 1 SEMANA 12” del 12/07:
+1 - Crear una aplicación que, primero, alterne entre dos actividades a través de botones, y, 
+luego, que cambie entre actividades a gusto del alumno (sugerencia: que cada actividad sea uno de los diseños de calculadora de los ejercicios anteriores).
+2 - Hacer que una Actividad envíe datos a otra.
+
+7Ma Clase de desarrollo de apps Android, se adjunta los scripts y screenshots de la actividad desarrollada, de las actividades secundarias solo se adjuntará el archivo .java
+
+String.XML--------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+<resources>
+    <!-- Main -->
+    <string name="app_name">SextaApp</string>
+    <string name="tvresult">Actividad 1</string>
+    <string name="btsiguiente">Siguiente</string>
+    <string name="etenviar">Enviar</string>
+    <string name="btenviar">Enviar mensaje</string>
+    <string name="tvbienvenida">Bienvenido elija su tipo de calculadora</string>
+    <string name="btelegir">Elegir</string>
+
+    <!-- Segunda Actividad-->
+    <string name="tvresult2">Actividad 2</string>
+    <string name="btanterior">Anterior</string>
+    <string name="tvrecibe">Su mensaje se entregará en esta vista</string>
+
+    <!-- Actividad tipo switches -->
+    <string name="tvbienvenidasw">Calculadora con switch</string>
+    <string name="swsuma">Sumar +</string>
+    <string name="swresta">Restar -</string>
+    <string name="swmulti">Multiplicar *</string>
+    <string name="swdivi">Dividir /</string>
+    <string name="etunosw">Ingrese su primer valor</string>
+    <string name="etdossw">Ingrese su segundo valor</string>
+    <string name="tvresultsw">Su resultado:</string>
+    <string name="btiniciosw">Volver a inicio</string>
+
+    <!-- Actividad tipo checkboxes-->
+    <string name="tvbienbenidach">Calculadora con check box</string>
+    <string name="etunoch">Ingrese su primer valor:</string>
+    <string name="etdosch">Ingrese su segundo valor:</string>
+    <string name="tvresultch">Su resultado:</string>
+    <string name="chsuma">Sumar +</string>
+    <string name="chresta">Restar -</string>
+    <string name="chmulti">Multiplicar *</string>
+    <string name="chdivi">Dividir /</string>
+    <string name="btoperarch">Operar</string>
+    <string name="btinicioch">Volver a inicio</string>
+
+    <!-- Actividad con Radio Buttons-->
+    <string name="tvbienvenidarb">Calculadora con radio buttons</string>
+    <string name="etunorb">Ingrese primer valor</string>
+    <string name="etdosrb">Ingrese segundo valor</string>
+    <string name="rbsuma">Sumar +</string>
+    <string name="rbresta">Restar -</string>
+    <string name="rbmulti">Multiplicar *</string>
+    <string name="rbdivi">Dividir</string>
+    <string name="tvresultrb">Su resultado es:</string>
+    <string name="btoperarrb">Operar</string>
+    <string name="btiniciorb">Volver al inicio </string>
+
+    <!-- Actividad con Buttons-->
+    <string name="tvbienvenidabt">Calculadora con buttons</string>
+    <string name="etunobt">Ingrese primer valor</string>
+    <string name="etdosbt">Ingrese sesgundo valor</string>
+    <string name="btsumabt">Sum +</string>
+    <string name="btrestabt">Res -</string>
+    <string name="btmultibt">Mul *</string>
+    <string name="btdivibt">Div /</string>
+    <string name="tvresultbt">Su resultado:</string>
+    <string name="btiniciobt">Inicio</string>
+
+
+</resources>
+
+activity_main.xml--------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/pastel"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/btsiguiente"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/btsiguiente"
+        android:onClick="Siguiente"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.858"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.942" />
+
+    <TextView
+        android:id="@+id/tvresult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/tvresult"
+        android:textColor="@color/purple_700"
+        android:textColorHint="@color/purple_700"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.466"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.022" />
+
+    <EditText
+        android:id="@+id/etenviar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/etenviar"
+        android:inputType="textPersonName"
+        android:textColor="@color/purple_700"
+        android:textColorHint="@color/purple_700"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.402"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.103" />
+
+    <Button
+        android:id="@+id/btenviar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/btenviar"
+        android:onClick="Enviar"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.449"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.209" />
+
+    <Button
+        android:id="@+id/btelegir"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/btelegir"
+        android:onClick="Elegir"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.645" />
+
+    <Spinner
+        android:id="@+id/spseleccion"
+        android:layout_width="345dp"
+        android:layout_height="73dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvbienvenida"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/tvbienvenida"
+        android:textColor="@color/purple_700"
+        android:textColorHint="@color/purple_700"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.393" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+MainActivity.java-------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+package com.example.sextaapp;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity {
+
+    private EditText et1;
+    private Spinner sp1;
+    private String [] seleccion ={"Seleccione su calculadora","Calculadora con Switch","Calculadora con Checkbox","Calculadora con Radio Button", "Calculadora con Buttons"};
+
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        et1=findViewById(R.id.etenviar);
+        sp1=findViewById(R.id.spseleccion);
+
+        ArrayAdapter <String> adpter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,seleccion);
+        sp1.setAdapter(adpter);
+
+    }
+
+    public void Siguiente (View v){
+        Intent siguiente = new Intent(this,SegundaActividad.class);
+        startActivity(siguiente);
+    }
+
+    public void Enviar (View v){
+        Intent enviar = new Intent(this, SegundaActividad.class);
+        enviar.putExtra("dato",et1.getText().toString());
+        startActivity(enviar);
+
+    }
+
+    public void Elegir (View v) {
+
+        String opciones = sp1.getSelectedItem().toString();
+
+
+        switch (opciones) {
+            case "Calculadora con Switch":
+                Intent switches = new Intent(this, ActividadSwitch.class);
+                startActivity(switches);
+
+
+                break;
+            case "Calculadora con Checkbox":
+                Intent check = new Intent(this, ActividadCheckBox.class);
+                startActivity(check);
+
+
+                break;
+            case "Calculadora con Radio Button":
+                Intent radio = new Intent(this, ActividadRadioButtons.class);
+                startActivity(radio);
+
+                break;
+            case "Calculadora con Buttons":
+                Intent buttons = new Intent(this, ActividadButtons.class);
+                startActivity(buttons);
+
+                break;
+            default:
+                Toast.makeText(this, "Debe seleccionar un tipo de calculadora", Toast.LENGTH_LONG).show();
+                break;
+        }
+
+    }
+}
+
+
+SegundaActividad.java---------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+package com.example.sextaapp;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
+
+public class SegundaActividad extends AppCompatActivity {
+
+    private TextView tv3;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_segunda_actividad);
+        tv3=findViewById(R.id.tvrecibe);
+
+        String dato =getIntent().getStringExtra("dato");
+        tv3.setText("Su mensaje: "+dato);
+    }
+
+    public void Anterior (View v){
+        Intent anterior = new Intent(this,MainActivity.class);
+        startActivity(anterior);
+    }
+}
+
+
+ActividadSwitch.java---------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+package com.example.sextaapp;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Switch;
+import android.widget.TextView;
+
+public class ActividadSwitch extends AppCompatActivity {
+
+    private Switch swsum,swres,swmul,swdiv;
+    private EditText ednum1, ednum2;
+    private TextView tvrsw;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_actividad_switch);
+        swsum=findViewById(R.id.swsuma);
+        swres=findViewById(R.id.swresta);
+        swmul=findViewById(R.id.swmulti);
+        swdiv=findViewById(R.id.swdivi);
+        ednum1=findViewById(R.id.etunosw);
+        ednum2=findViewById(R.id.etdossw);
+        tvrsw=findViewById(R.id.tvresultsw);
+
+
+    }
+
+    public void Sumar (View v){
+        double valor1 = Double.parseDouble(ednum1.getText().toString());
+        double valor2 = Double.parseDouble(ednum2.getText().toString());
+
+        double sumar = valor1+valor2;
+        tvrsw.setText("El resultado de su suma es : "+sumar);
+    }
+
+    public void Restar (View v){
+        double valor1 = Double.parseDouble(ednum1.getText().toString());
+        double valor2 = Double.parseDouble(ednum2.getText().toString());
+
+        double restar = valor1-valor2;
+        tvrsw.setText("El resultado de su resta es : "+restar);
+    }
+
+    public void Multiplicar (View v){
+        double valor1 = Double.parseDouble(ednum1.getText().toString());
+        double valor2 = Double.parseDouble(ednum2.getText().toString());
+
+        double multiplicar = valor1*valor2;
+        tvrsw.setText("El resultado de su multiplicación es : "+multiplicar);
+    }
+
+    public void Dividir (View v){
+        double valor1 = Double.parseDouble(ednum1.getText().toString());
+        double valor2 = Double.parseDouble(ednum2.getText().toString());
+
+        if(valor2==0){
+            tvrsw.setText("Su divisor debe ser distinto de cero");
+        }else{
+            double dividir = valor1/valor2;
+            tvrsw.setText("El resultado de su división es : "+dividir);
+        }
+
+
+    }
+
+    public void velverInicio (View v){
+        Intent volver = new Intent(this,MainActivity.class);
+        startActivity(volver);
+    }
+}
+
+
+
+ActividadCheckBox.java---------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+package com.example.sextaapp;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+public class ActividadCheckBox extends AppCompatActivity {
+
+    private EditText etnum1, etnum2;
+    private TextView tv1;
+    private CheckBox chsum,chres,chmul,chdiv;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_actividad_check_box);
+        etnum1= findViewById(R.id.etunoch);
+        etnum2=findViewById(R.id.etdosch);
+        chsum=findViewById(R.id.chsuma);
+        chres=findViewById(R.id.chresta);
+        chmul=findViewById(R.id.chmulti);
+        chdiv=findViewById(R.id.chdivi);
+        tv1=findViewById(R.id.tvresultch);
+    }
+
+    public void Operar (View v){
+        double valor1 = Double.parseDouble(etnum1.getText().toString());
+        double valor2 = Double.parseDouble(etnum2.getText().toString());
+
+        if(chsum.isChecked()){
+            double suma = valor1+valor2;
+            tv1.setText("El resultado de su suma es: "+suma);
+        }else if(chres.isChecked()){
+            double resta = valor1-valor2;
+            tv1.setText("El resultado de su resta es: "+resta);
+        }else if(chmul.isChecked()){
+            double multi = valor1*valor2;
+            tv1.setText("El resultado de su multiplicación es: "+multi);
+        }else if(chdiv.isChecked()){
+            if(valor2==0){
+                tv1.setText("El divisor debe ser distinto a cero");
+
+            }else{
+                double divi = valor1/valor2;
+                tv1.setText("El resultado de su división es: "+divi);
+            }
+
+        }else{
+            Toast.makeText(this,"Debe seleccionar una operación",Toast.LENGTH_LONG).show();
+        }
+    }
+
+    public void velverInicioCh (View v){
+        Intent volver = new Intent(this,MainActivity.class);
+        startActivity(volver);
+    }
+
+}
+
+
+
+ActividadRadioButtons.java---------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+ackage com.example.sextaapp;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.TextView;
+import android.widget.Toast;
+
+public class ActividadRadioButtons extends AppCompatActivity {
+
+    private EditText edval1,edval2;
+    private TextView tvres1;
+    private RadioButton rdsum,rdres,rdmul,rddiv;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_actividad_radio_buttons);
+        edval1=findViewById(R.id.etunorb);
+        edval2=findViewById(R.id.etdosrb);
+        rdsum = findViewById(R.id.rbsuma);
+        rdres = findViewById(R.id.rbresta);
+        rdmul = findViewById(R.id.rbmulti);
+        rddiv = findViewById(R.id.rbdivi);
+        tvres1 = findViewById(R.id.tvresultrb);
+
+    }
+
+    public void OperarRb (View v){
+        double valor1 = Double.parseDouble(edval1.getText().toString());
+        double valor2 = Double.parseDouble(edval2.getText().toString());
+
+        if(rdsum.isChecked()){
+            double suma = valor1+valor2;
+            tvres1.setText("El resultado de su suma es: "+suma);
+        }else if(rdres.isChecked()){
+            double resta = valor1-valor2;
+            tvres1.setText("El resultado de su resta es: "+resta);
+        }else if(rdmul.isChecked()){
+            double multi = valor1*valor2;
+            tvres1.setText("El resultado de su multiplicación es: "+multi);
+        }else if(rddiv.isChecked()){
+            if(valor2==0){
+                tvres1.setText("El divisor debe ser distinto a cero");
+
+            }else{
+                double divi = valor1/valor2;
+                tvres1.setText("El resultado de su división es: "+divi);
+            }
+        }else{
+            Toast.makeText(this,"Debe seleccionar una operación",Toast.LENGTH_LONG).show();
+        }
+
+    }
+
+    public void velverInicioRb (View v){
+        Intent volver = new Intent(this,MainActivity.class);
+        startActivity(volver);
+    }
+}
+
+
+ActividadButtons.java---------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+package com.example.sextaapp;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+
+public class ActividadButtons extends AppCompatActivity {
+
+    private EditText etunobt, etdosbt;
+    private TextView tvresbt;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_actividad_buttons);
+        etunobt=findViewById(R.id.etunobt);
+        etdosbt=findViewById(R.id.etdosbt);
+        tvresbt=findViewById(R.id.tvresultbt);
+
+
+    }
+
+    public void SumarBt (View v){
+        double valor1 = Double.parseDouble(etunobt.getText().toString());
+        double valor2 = Double.parseDouble(etdosbt.getText().toString());
+
+        double sumar = valor1+valor2;
+        tvresbt.setText("El resultado de su suma es : "+sumar);
+    }
+
+    public void RestarBt (View v){
+        double valor1 = Double.parseDouble(etunobt.getText().toString());
+        double valor2 = Double.parseDouble(etdosbt.getText().toString());
+
+        double restar = valor1-valor2;
+        tvresbt.setText("El resultado de su resta es : "+restar);
+    }
+
+    public void MultiplicarBt (View v){
+        double valor1 = Double.parseDouble(etunobt.getText().toString());
+        double valor2 = Double.parseDouble(etdosbt.getText().toString());
+
+        double multiplicar = valor1*valor2;
+        tvresbt.setText("El resultado de su multiplicación es : "+multiplicar);
+    }
+
+    public void DividirBt (View v){
+        double valor1 = Double.parseDouble(etunobt.getText().toString());
+        double valor2 = Double.parseDouble(etdosbt.getText().toString());
+
+        if(valor2==0){
+            tvresbt.setText("Su divisor debe ser distinto de cero");
+        }else{
+            double dividir = valor1/valor2;
+            tvresbt.setText("El resultado de su división es : "+dividir);
+        }
+    }
+
+    public void volverInicioBt (View v){
+        Intent volver = new Intent(this,MainActivity.class);
+        startActivity(volver);
+    }
+
+
+}
+
+

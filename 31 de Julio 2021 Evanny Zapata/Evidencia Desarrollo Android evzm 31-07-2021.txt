@@ -1,0 +1,648 @@
+Evidencia “DÍA 6 SEMANA 14” del 31/07:
+Avance del ejercicio anterior del 30/07.
+
+22Da Clase de desarrollo de apps Android, se adjunta los scripts y screenshots de la actividad desarrollada, de las actividades secundarias solo se adjuntará el archivo .java
+
+
+String.XML--------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+<resources>
+    <string name="app_name">AppDeCuentas</string>
+
+    <!-- Actividad Main -->
+    <string name="tbbienvenidamn">Bienvenido a su registro de cuentas que desea realizar:</string>
+    <string name="btregistrarmn">Registrar gasto</string>
+    <string name="btconsultarmn">Consultar meses anteriores</string>
+    <string name="btcompararmn">Comparar gastos</string>
+
+    <!-- Actividad Registrar -->
+    <string name="tvbienvenidarg">Bienvenido al registro de cuentas, seleccione su producto</string>
+    <string name="btagua">Agua</string>
+    <string name="btluz">Electricidad</string>
+    <string name="btgas">Gas</string>
+    <string name="bttelevision">Tv</string>
+    <string name="bttelefono">Telefonía</string>
+    <string name="btinternet">Internet</string>
+
+    <string name="tvselectmes">Seleccione un mes</string>
+    <string name="tvmostrard1rg">Su servicio:</string>
+    <string name="tvmostrard2rg">Su mes:</string>
+    <string name="btregistar">Registrar Consulta</string>
+    <string name="btvolverrg">Volver</string>
+
+    <!-- Actividad Consultar -->
+    <string name="tvbienvenidaca">Consulta de registros</string>
+    <string name="tvselectserca">Seleccione servicio que desee consultar</string>
+    <string name="tvselectmesca">Seleccione mes que desee consultar</string>
+    <string name="tvvistauno">Su Servicio:</string>
+    <string name="tvvistados">Su mes:</string>
+    <string name="btconsulta">Consultar</string>
+    <string name="btvolverca">Volver</string>
+
+    <!-- Actividad Comparar -->
+    <string name="tvbienvenidacom">Comparar registros</string>
+    <string name="tvselsercom">Seleccione el servicio que desea comparar</string>
+    <string name="spserviciocom">Seleccione servicio</string>
+    <string name="tvmesunocom">Seleccione el primer mes</string>
+    <string name="tvmesdoscom">Seleccione el segundo mes</string>
+    <string name="tvservicom">Su servicio</string>
+    <string name="tvunocom">Su primer mes</string>
+    <string name="tvdoscom">Su segundo mes</string>
+    <string name="tvunodatocom">1er mes:</string>
+    <string name="tvdosdatocom">2do mes</string>
+    <string name="tvresultcom">Su resultado: </string>
+    <string name="btvolvercom">Volver</string>
+    <string name="btcompara">Comparar</string>
+    
+
+</resources>
+
+activity_main.xml--------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/oscuro4"
+    tools:context=".MainActivity" >
+
+    <TextView
+        android:id="@+id/tvbienvenidamn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:hint="@string/tbbienvenidamn"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.104" />
+
+    <LinearLayout
+        android:layout_width="211dp"
+        android:layout_height="200dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.433">
+
+        <Button
+            android:id="@+id/btregistarmn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/btregistrarmn"
+            android:onClick="registrarGastos"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="20sp"
+            app:backgroundTint="@color/teal_700" />
+
+        <Button
+            android:id="@+id/btconsultarmn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/btconsultarmn"
+            android:onClick="consultarGastos"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="20sp"
+            app:backgroundTint="@color/teal_700" />
+
+        <Button
+            android:id="@+id/btcompararmn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/btcompararmn"
+            android:onClick="compararGastos"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="20sp"
+            app:backgroundTint="@color/teal_700" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+MainActivity.java-------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+package com.example.appdecuentas;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+
+public class MainActivity extends AppCompatActivity {
+
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
+
+    public void registrarGastos (View v) {
+        Intent dirige1 = new Intent(this, ActividadRegistrar.class);
+        startActivity(dirige1);
+    }
+
+    public void consultarGastos (View v){
+        Intent dirige2 = new Intent(this,ActividadConsultar.class);
+        startActivity(dirige2);
+    }
+
+    public void compararGastos (View v){
+        Intent dirige2 = new Intent(this,ActividadComparar.class);
+        startActivity(dirige2);
+    }
+
+
+}
+
+ActividadRegistrar.java-------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+package com.example.appdecuentas;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.ContentValues;
+import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
+
+public class ActividadRegistrar extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+
+    private Spinner spslmes;
+    private EditText etregistro;
+    private TextView tv1,tv2;
+    private String[] select = {"Seleccione mes","Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"};
+
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_actividad_registrar);
+        spslmes=findViewById(R.id.spselectmes);
+        etregistro=findViewById(R.id.etingresonumrg);
+        tv1=findViewById(R.id.tvmostrard1rg);
+        tv2=findViewById(R.id.tvmostrard2rg);
+
+        ArrayAdapter<String> adapter= new ArrayAdapter<>(this, R.layout.spinner_item_evans,select);
+        spslmes.setAdapter(adapter);
+        spslmes.setOnItemSelectedListener(this);
+
+
+
+
+    }
+
+    public void botonAgua(View v){
+        tv1.setText("Agua");
+    }
+
+    public void botonLuz(View v){
+        tv1.setText("Electricidad");
+    }
+
+    public void botonGas(View v){
+        tv1.setText("Gas");
+    }
+
+    public void botonTv(View v){
+        tv1.setText("Television");
+    }
+
+    public void botonTelefono(View v){
+        tv1.setText("Telefonia");
+    }
+
+    public void botonInternet(View v){
+        tv1.setText("Internet");
+    }
+
+
+
+
+
+
+
+    public void ingresarRegistro(View v){
+
+        String registro = etregistro.getText().toString();
+
+
+
+
+        if(tv1.getText().equals("")||tv2.getText().equals("Seleccione mes")||registro.equals("")){
+            Toast.makeText(getApplicationContext(),"Ingrese servicio, mes de registro y monto a registrar",Toast.LENGTH_LONG).show();
+
+        }else{
+
+
+
+            Admindb admin = new Admindb(getApplicationContext(),"Registro",null,1);
+            SQLiteDatabase base = admin.getWritableDatabase();
+
+
+
+            ContentValues c = new ContentValues();
+            c.put("nombre",tv1.getText().toString());
+            int idserbase= (int) base.insert("servicio",null,c);
+
+            ContentValues d= new ContentValues();
+            d.put("nombre",tv2.getText().toString());
+            int idmes = (int) base.insert("meses",null,d);
+
+            String precio = etregistro.getText().toString();
+            int conv= Integer.parseInt(precio);
+
+            ContentValues e = new ContentValues();
+            e.put("precio",conv);
+            e.put("id_mes",idmes);
+            e.put("id_servicio",idserbase);
+            base.insert("registroServicioMes",null,e);
+
+            
+
+            base.close();
+
+
+            Intent volver = new Intent(this,MainActivity.class);
+            startActivity(volver);
+            Toast.makeText(getApplicationContext(),"Su registro fue creado exitosamente",Toast.LENGTH_LONG).show();
+
+        }
+
+    }
+
+
+    public void volverMainRegistrar (View v){
+        Intent volver = new Intent(getApplicationContext(),MainActivity.class);
+        startActivity(volver);
+
+    }
+
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View v, int pos, long id) {
+        String item = parent.getItemAtPosition(pos).toString();
+        tv2.setText(item);
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+        tv2.setText("");
+
+    }
+}
+
+Admindb.java-------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+package com.example.appdecuentas;
+
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+
+import androidx.annotation.Nullable;
+
+public class Admindb extends SQLiteOpenHelper {
+    public Admindb(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
+        super(context, name, factory, version);
+    }
+
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+
+
+        //Base de dato con sqlite, ingreso de tablas meses, servicio y
+        db.execSQL("create table meses(idmes integer not null primary key autoincrement, nombre varchar)");
+
+        db.execSQL("create table servicio(idservicio integer not null primary key autoincrement, nombre varchar)");
+
+        db.execSQL("create table registroServicioMes(idreg  integer primary key autoincrement, id_mes INTEGER not null,id_servicio INTEGER not null , precio int, foreign key (id_mes)  references meses(idmes)  , foreign key(id_servicio) references servicio(idservicio))");
+
+
+
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+
+    }
+}
+
+
+ActividadConsultar.java-------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+package com.example.appdecuentas;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+
+public class ActividadConsultar extends AppCompatActivity {
+
+
+    private TextView tvvistaser,tvvistames;
+    private Spinner spmesca,spserca;
+    private ListView lvdatosca;
+
+    private String[] select1 = {"Seleccione servicio","Agua","Electricidad","Gas","Television","Telefonia","Internet"};
+    private String[] select2 = {"Seleccione mes","Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"};
+
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_actividad_consultar);
+        spserca=findViewById(R.id.spconsultarser);
+        spmesca=findViewById(R.id.spconsultames);
+        tvvistaser=findViewById(R.id.tvvistauno);
+        tvvistames=findViewById(R.id.tvvistados);
+        lvdatosca=findViewById(R.id.lvconsultaca);
+
+        ArrayAdapter adapter1=new ArrayAdapter(getApplicationContext(), R.layout.spinner_item_evans,select1);
+        spserca.setAdapter(adapter1);
+
+        spserca.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View v, int pos, long id) {
+                String item= parent.getItemAtPosition(pos).toString();
+                tvvistaser.setText(item);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                tvvistaser.setText("");
+
+            }
+        });
+
+
+
+        ArrayAdapter adapter2=new ArrayAdapter(this, R.layout.spinner_item_evans,select2);
+        spmesca.setAdapter(adapter2);
+        spmesca.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View v, int pos, long id) {
+                String item2 = parent.getItemAtPosition(pos).toString();
+                tvvistames.setText(item2);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                tvvistames.setText("");
+
+            }
+        });
+
+
+
+
+    }
+
+    public void consultarServicioMes(View view) {
+
+        String datoser = tvvistaser.getText().toString();
+        String datomes = tvvistames.getText().toString();
+
+        if(!datoser.equals("Seleccione servicio") && !datomes.equals("Seleccione mes")){
+
+            /* pensado en usar where CharSequence ser = "%" + datoser + "%";
+            CharSequence mes = "%" + datomes + "%" */;
+
+
+            Admindb admin = new Admindb(getApplicationContext(), "Registro", null, 1);
+            SQLiteDatabase base = admin.getWritableDatabase();
+
+
+            Cursor cursor = base.rawQuery("select m.nombre, rsm.precio, s.nombre " +
+                    "from registroServicioMes as rsm " +
+                    "inner join meses as m " +
+                    "on rsm.id_mes = m.idmes " +
+                    "inner join servicio as s " +
+                    "on rsm.id_servicio = s.idservicio", null);
+
+
+
+            ArrayList<String> lista = new ArrayList<>();
+
+            while (cursor.moveToNext()) {
+
+                if(datoser.equals(cursor.getString(2)) && datomes.equals(cursor.getString(0)))
+                lista.add(cursor.getString(2) + " - " + cursor.getString(0) + " - " + cursor.getString(1));
+
+
+            }
+
+            if(lista == null|| lista.size()==0){
+
+                Toast.makeText(this,"No existen registros de gastos del mes y el servicio ",Toast.LENGTH_LONG).show();
+            }else {
+
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.listview_item_evans, lista);
+                lvdatosca.setAdapter(adapter);
+            }
+
+            base.close();
+
+
+        }else{
+            Toast.makeText(this,"Debe seleccionar los campos de mes y servicio",Toast.LENGTH_LONG).show();
+        }
+    }
+
+    public void volverMainConsultar (View v){
+        Intent volver = new Intent(getApplicationContext(),MainActivity.class);
+        startActivity(volver);
+
+    }
+
+
+}
+
+
+
+
+(Por finalizar)
+ActividadComparar.java-------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+package com.example.appdecuentas;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+
+public class ActividadComparar extends AppCompatActivity {
+
+
+    private String glovar1 = "Seleccione servicio", glovar2,glovar3;
+    private Spinner spservicio, spmes1, spmes2;
+    private TextView tvservicio, tvmesuno, tvmesdos;
+    private ListView listuno, listdos;
+
+    private String[] select1 = {"Agua","Electricidad","Gas","Television","Telefonia","Internet"};
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_actividad_comparar);
+
+        spservicio=findViewById(R.id.spserviciocom);
+
+
+        tvservicio=findViewById(R.id.tvservicom);
+        tvmesuno=findViewById(R.id.tvunocom);
+        tvmesdos=findViewById(R.id.tvdoscom);
+        listuno=findViewById(R.id.lvmesunocom);
+        listdos=findViewById(R.id.lvmesdoscom);
+
+
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,R.layout.spinner_item_evans,select1);
+        spservicio.setAdapter(adapter);
+
+        spservicio.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+                String opcion = parent.getItemAtPosition(pos).toString();
+                tvservicio.setText(opcion);
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                tvservicio.setText("");
+            }
+        });
+
+        comparaServicio();
+
+
+
+
+    }
+
+    public void comparaServicio(){
+
+        String dato1= tvservicio.getText().toString();
+
+
+            Admindb admin = new Admindb(getApplicationContext(), "Registro", null, 1);
+            SQLiteDatabase base = admin.getWritableDatabase();
+
+
+            Cursor cursor2 = base.rawQuery("select m.nombre, rsm.precio, s.nombre " +
+                    "from registroServicioMes as rsm " +
+                    "inner join meses as m " +
+                    "on rsm.id_mes = m.idmes " +
+                    "inner join servicio as s " +
+                    "on rsm.id_servicio = s.idservicio", null);
+
+
+
+
+
+
+            ArrayList<String> comparacion = new ArrayList<>();
+
+
+            while (cursor2.moveToNext()) {
+
+                if(dato1.equals(cursor2.getString(2))) {
+                    comparacion.add(cursor2.getString(0) + " - " + cursor2.getString(1));
+                }
+
+
+
+            }
+
+
+
+
+            ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this, R.layout.listview_item_evans, comparacion);
+            listuno.setAdapter(adapter2);
+
+
+
+
+        }
+
+
+
+
+    public void comparacionBoton(View v){
+
+
+    }
+
+    public void volverMainComparar (View v){
+        Intent volver = new Intent(getApplicationContext(),MainActivity.class);
+        startActivity(volver);
+
+    }
+    
+
+}

@@ -1,0 +1,151 @@
+Evidencia “DÍA 1 SEMANA 14” del 26/07:
+1 - Investigar sobre DatePickerDialog y TimePickerDialog.
+2 - Avance del ejercicio anterior del 24/07. Opcionalmente, incorporar lo investigado en el ítem 1.
+
+=============
+LEER -----> eL Avance  del proyecto del 24/07/2021 solo será descrito brevemente sin screenshot-----> Se crea actividad busqueda de servicio y se coordina con el grupo que activades se interrelacionan entre sí
+=============
+
+17Ma Clase de desarrollo de apps Android, se adjunta los scripts y screenshots de la actividad desarrollada, de las actividades secundarias solo se adjuntará el archivo .java
+
+
+String.XML--------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+<resources>
+    <string name="app_name">DecimoSegundaApp</string>
+    <string name="ethora">Ingrese hora</string>
+    <string name="etfecha">Ingrese fecha</string>
+</resources>
+
+
+activity_main.xml--------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/ivhora"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:onClick="mostrarHorario"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.778"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.101"
+        app:srcCompat="@drawable/iconoreloj" />
+
+    <ImageView
+        android:id="@+id/ivfecha"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:onClick="mostrarCalendario"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.778"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.29"
+        app:srcCompat="@drawable/iconocalendario" />
+
+    <EditText
+        android:id="@+id/etfecha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/etfecha"
+        android:inputType="date"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.154"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.298" />
+
+    <EditText
+        android:id="@+id/ethora"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/ethora"
+        android:inputType="time"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.154"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.125" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+MainActivity.java-------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+package com.example.decimosegundaapp;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.TimePicker;
+
+import java.text.SimpleDateFormat;
+
+public class MainActivity extends AppCompatActivity {
+
+    private EditText ethoras,etfecha;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        ethoras=findViewById(R.id.ethora);
+        etfecha=findViewById(R.id.etfecha);
+    }
+
+    public void mostrarCalendario (View v){
+
+        DatePickerDialog date = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                etfecha.setText(dayOfMonth+"/"+(month+1)+"/"+year);
+
+            }
+        },2021,6,26);
+
+        date.show();
+    }
+
+
+    public void mostrarHorario (View v){
+
+        TimePickerDialog time = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                ethoras.setText(hourOfDay+":"+minute);
+
+            }
+        },12,0,true);
+        time.show();
+
+    }
+
+
+
+
+}
+
+

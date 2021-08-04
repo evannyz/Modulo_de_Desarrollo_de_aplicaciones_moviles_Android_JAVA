@@ -1,0 +1,454 @@
+Evidencia “DÍA 2 SEMANA 13” del 20/07:
+Hacer que la aplicación del ejercicio anterior del 19/07 abra una nueva Actividad
+ para cada una de las acciones guardar, 
+buscar, modificar y eliminar producto.
+
+
+12Da Clase de desarrollo de apps Android, se adjunta los scripts y screenshots de la actividad desarrollada, de las actividades secundarias solo se adjuntará el archivo .java
+
+
+String.XML--------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+<resources>
+    <string name="app_name">NovenaApp</string>
+    <string name="tvbienvenidamain">Bienvenido a la administración <br /> de bases de datos </string>
+    <string name="tvbienve2">¿Que operación desea realizar?</string>
+    <string name="btcrear">Crear Producto</string>
+    <string name="btbuscar">Buscar Producto</string>
+    <string name="btmodi">Modificar Producto</string>
+    <string name="bteliminar">Eliminar Producto</string>
+
+    <!-- Actividad Crear Producto-->
+    <string name="tvbienvecrea">Creación de producto</string>
+    <string name="btiniciocr">Volver</string>
+    <string name="etcodigo">Ingrese codigo del producto</string>
+    <string name="etnombre">Ingrese nombre del producto</string>
+    <string name="etprecio">Ingrese precio del producto</string>
+    <string name="btcrearpro">Crear Producto</string>
+
+    <!-- Actividad Buscar y Modificar producto-->
+    <string name="tvbienvenidabm">Buscar o Modificar <br /> Producto</string>
+    <string name="etcodigobm">Ingrese codigo del producto</string>
+    <string name="etnombrebm">Ingrese nombre del producto</string>
+    <string name="etpreciobm">Ingrese precio del producto</string>
+    <string name="btbuscarbm">Buscar Producto</string>
+    <string name="btmodificarbm">Modificar Producto</string>
+
+    <!-- Actividad Eliminar Producto-->
+    <string name="tvbienvenidael">Eliminar Producto</string>
+    <string name="etcodigoel">Ingrese codigo del producto</string>
+    <string name="etnombreel">Ingrese nombre del producto</string>
+    <string name="etprecioel">Ingrese precio del producto</string>
+    <string name="bteliminarel">Eliminar Producto</string>
+    
+</resources>
+
+
+activity_main.xml--------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondocontrasteoscuro"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/tvbienbenidamain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:hint="@string/tvbienvenidamain"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.066" />
+
+    <TextView
+        android:id="@+id/tvbienve2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/tvbienve2"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.193" />
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.433">
+
+        <Button
+            android:id="@+id/btcrear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/btcrear"
+            android:onClick="dirigeCrear"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="20sp"
+            app:backgroundTint="@android:color/transparent"
+            app:cornerRadius="15dp"
+            app:icon="@android:drawable/ic_menu_add"
+            app:strokeColor="@color/white"
+            app:strokeWidth="3dp" />
+
+        <Button
+            android:id="@+id/btbuscar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/btbuscar"
+            android:onClick="dirigeBuscarModificar"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="20sp"
+            app:backgroundTint="@android:color/transparent"
+            app:cornerRadius="15dp"
+            app:icon="@android:drawable/ic_menu_search"
+            app:strokeColor="@color/white"
+            app:strokeWidth="3dp" />
+
+        <Button
+            android:id="@+id/btmodi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/btmodi"
+            android:onClick="dirigeBuscarModificar"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="20sp"
+            app:backgroundTint="@android:color/transparent"
+            app:cornerRadius="15dp"
+            app:icon="@android:drawable/ic_menu_edit"
+            app:strokeColor="@color/white"
+            app:strokeWidth="3dp" />
+
+        <Button
+            android:id="@+id/bteliminar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/bteliminar"
+            android:onClick="dirigeEliminar"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="20sp"
+            app:backgroundTint="@android:color/transparent"
+            app:cornerRadius="15dp"
+            app:icon="@android:drawable/ic_menu_delete"
+            app:strokeColor="@color/white"
+            app:strokeWidth="3dp" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+MainActivity.java-------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+package com.example.novenaapp;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
+
+    public void dirigeCrear (View v){
+        Intent crear = new Intent (this, ActividadCrear.class);
+        startActivity(crear);
+    }
+
+    public void dirigeBuscarModificar (View v){
+        Intent crear = new Intent (this, ActividadBuscarYModificar.class);
+        startActivity(crear);
+    }
+
+    public void dirigeEliminar (View v){
+        Intent crear = new Intent (this, ActividadEliminar.class);
+        startActivity(crear);
+    }
+    
+}
+
+
+ActividadCrear.java-----------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+package com.example.novenaapp;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.ContentValues;
+import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
+
+public class ActividadCrear extends AppCompatActivity {
+
+    private EditText etcod,etnom, etpre;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_actividad_crear);
+        etcod=findViewById(R.id.etcodigo);
+        etnom=findViewById(R.id.etnombre);
+        etpre=findViewById(R.id.etprecio);
+
+
+    }
+
+    public void crearProducto(View v){
+        Admindb admin = new Admindb(this,"Productos",null,1);
+        SQLiteDatabase base = admin.getWritableDatabase();
+
+        String codigo = etcod.getText().toString();
+        String nombre = etnom.getText().toString();
+        String precio = etpre.getText().toString();
+
+        if(!codigo.isEmpty() && !nombre.isEmpty()&& !precio.isEmpty()){
+
+            ContentValues crear = new ContentValues();
+            crear.put("codigo",codigo);
+            crear.put("nombre",nombre);
+            crear.put("precio",precio);
+
+            base.insert("producto",null,crear);
+            base.close();
+            etcod.setText("");
+            etnom.setText("");
+            etpre.setText("");
+            Toast.makeText(this,"Producto creado en la base de datos con exito",Toast.LENGTH_LONG).show();
+
+        }else{
+            Toast.makeText(this,"Debe completar todos los campos para crear el producto",Toast.LENGTH_LONG).show();
+        }
+    }
+
+    public void volverInicio (View v){
+        Intent inicio = new Intent(this, MainActivity.class);
+        startActivity(inicio);
+
+    }
+}
+
+
+ActividadBuscarYModificar.java------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+package com.example.novenaapp;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.ContentValues;
+import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
+
+public class ActividadBuscarYModificar extends AppCompatActivity {
+
+    private EditText etcodbm,etnombm, etprebm;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_actividad_buscar_ymodificar);
+
+        etcodbm=findViewById(R.id.etcodigobm);
+        etnombm=findViewById(R.id.etnombrebm);
+        etprebm=findViewById(R.id.etpreciobm);
+    }
+
+
+
+    public void buscarProductoBM (View v){
+        Admindb admin = new Admindb(this,"Productos", null, 1);
+        SQLiteDatabase base = admin.getWritableDatabase();
+
+        String codigo = etcodbm.getText().toString();
+
+        if(!codigo.isEmpty()){
+
+            Cursor fila = base.rawQuery("select nombre, precio from producto where codigo="+codigo,null);
+            if(fila.moveToFirst()){
+                etnombm.setText(fila.getString(0));
+                etprebm.setText(fila.getString(1));
+                base.close();
+            }else{
+                Toast.makeText(this,"El codigo del producto no se encuentra en la base de datos",Toast.LENGTH_LONG).show();
+            }
+        }else{
+            Toast.makeText(this,"Debe introducir el codigo del producto",Toast.LENGTH_LONG).show();
+        }
+    }
+
+
+
+    public void modificarProductoBM (View v){
+        Admindb admin = new Admindb(this, "Productos",null,1);
+        SQLiteDatabase base = admin.getWritableDatabase();
+
+        String codigo = etcodbm.getText().toString();
+        String nombre = etnombm.getText().toString();
+        String precio = etprebm.getText().toString();
+
+        if(!codigo.isEmpty() && !nombre.isEmpty() && !precio.isEmpty()){
+
+            ContentValues registro = new ContentValues();
+            registro.put("codigo",codigo);
+            registro.put("nombre",nombre);
+            registro.put("precio",precio);
+
+            base.update("producto", registro, "codigo="+codigo, null);
+            base.close();
+            etcodbm.setText("");
+            etnombm.setText("");
+            etprebm.setText("");
+            Toast.makeText(this, "Modificación de producto exitosa", Toast.LENGTH_LONG).show();
+
+
+        }else{
+            Toast.makeText(this,"Debe completar todos los campos",Toast.LENGTH_LONG).show();
+
+        }
+    }
+
+
+ActividadEliminar.java--------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+package com.example.novenaapp;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
+
+public class ActividadEliminar extends AppCompatActivity {
+
+    private EditText etcodel, etnomel, etpreel;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_actividad_eliminar);
+
+        etcodel=findViewById(R.id.etcodigoel);
+        etnomel=findViewById(R.id.etnombreel);
+        etpreel=findViewById(R.id.etprecioel);
+
+    }
+
+    public void eliminarProductoEl (View v){
+        Admindb admin = new Admindb(this,"Productos",null,1);
+        SQLiteDatabase base = admin.getWritableDatabase();
+
+        String codigo = etcodel.getText().toString();
+
+        if(!codigo.isEmpty()){
+
+            int cantidad = base.delete("producto","codigo="+codigo,null);
+            base.close();
+
+            etcodel.setText("");
+            etnomel.setText("");
+            etpreel.setText("");
+
+            if(cantidad ==1){
+                Toast.makeText(this, "Su articulo se borró correctamente",Toast.LENGTH_LONG).show();
+            }else{
+                Toast.makeText(this, "El artículo que desea eliminar no existe en la base de datos",Toast.LENGTH_LONG).show();
+            }
+
+
+
+        }else{
+            Toast.makeText(this,"Debes introducir el codigo del producto",Toast.LENGTH_LONG).show();
+        }
+
+    }
+
+
+
+    public void volverInicioEl (View v){
+        Intent inicio = new Intent(this, MainActivity.class);
+        startActivity(inicio);
+
+    }
+}
+
+
+Admindb.java------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+package com.example.novenaapp;
+
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+
+import androidx.annotation.Nullable;
+
+
+public class Admindb extends  SQLiteOpenHelper{
+    public Admindb(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
+        super(context, name, factory, version);
+    }
+
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+
+        db.execSQL("create table producto(codigo int primary key, nombre varchar, precio int)");
+
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+
+    }
+}

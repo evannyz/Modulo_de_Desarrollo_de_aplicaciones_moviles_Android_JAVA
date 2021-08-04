@@ -1,0 +1,84 @@
+Evidencia “DÍA 3 SEMANA 14” del 28/07:
+Avance del proyecto principal del ejercicio anterior del 27/07.
+
+=============
+LEER -----> eL Avance  del proyecto del 24/07/2021 se adjuntan screenshot-----> Se definen los aspectos graficos y se crea la actividad profesional para rellenar lista en spinner
+=============
+
+19Na Clase de desarrollo de apps Android, se adjunta screenshots de la actividad desarrollada
+
+
+(Actividad secundaria a Busqueda profesional)
+Profesional.java--------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+package com.example.gatochasquilla;
+
+public class Profesional {
+
+    private int idProfesional;
+    private String nombres, apepat, apemat, comuna, region;
+
+    public Profesional(int idProfesional, String nombres, String apepat, String apemat, String comuna, String region) {
+        this.idProfesional = idProfesional;
+        this.nombres = nombres;
+        this.apepat = apepat;
+        this.apemat = apemat;
+        this.comuna = comuna;
+        this.region = region;
+    }
+
+    public Profesional() {
+    }
+
+    public int getIdProfesional() {
+        return idProfesional;
+    }
+
+    public void setIdProfesional(int idProfesional) {
+        this.idProfesional = idProfesional;
+    }
+
+    public String getNombres() {
+        return nombres;
+    }
+
+    public void setNombres(String nombres) {
+        this.nombres = nombres;
+    }
+
+    public String getApepat() {
+        return apepat;
+    }
+
+    public void setApepat(String apepat) {
+        this.apepat = apepat;
+    }
+
+    public String getApemat() {
+        return apemat;
+    }
+
+    public void setApemat(String apemat) {
+        this.apemat = apemat;
+    }
+
+    public String getComuna() {
+        return comuna;
+    }
+
+    public void setComuna(String comuna) {
+        this.comuna = comuna;
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
+    }
+}
+
+
